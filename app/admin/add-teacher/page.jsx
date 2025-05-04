@@ -1,12 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import { useTeacher } from '../../context/TeacherContext';
 
 export default function addTeacher(){
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [teachers, setTeachers] = useState([]);
     const [message, setMessage] = useState('');
+
+    const { addTeacher } = useTeacher();
+
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -16,8 +20,7 @@ export default function addTeacher(){
             return;
         }
 
-        const newTeacher = {name, email};
-        setTeachers([...teachers, newTeacher]);
+        addTeacher({ name, email });
         setMessage(`Teacher ${name} added successfully!`);
 
         setName('');
