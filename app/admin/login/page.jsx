@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../../context/AuthContext";
 
 export default function LoginPage(){
     const [email, setEmail] = useState("");
@@ -8,21 +9,13 @@ export default function LoginPage(){
     const [error, setError] = useState("")
 
     const router = useRouter();
+    const { login } = useAuth();
 
     const handleSubmit = (e)=>{
         e.preventDefault();
 
-        const dummyMail = "rockermoizz@gmail.com";
-        const dummyPassword = "moizz123";
 
-        if(email === dummyMail && password === dummyPassword){
-            alert("Login Successful!");
-            setError("");
-            router.push("dashboard");
-        }else{
-            setError("Invalid email or password");
-            console.log(error)
-        }
+        login("rockermoizz@gmail.com", "moizz123");
     }
     return (
         <div>
