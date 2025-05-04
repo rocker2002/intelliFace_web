@@ -1,0 +1,10 @@
+"use client";
+
+export default function(){
+    return(
+        <div>
+            <h1>Welcome to the dashboard!</h1>
+            <p>Manage teachers, students and attendance here.</p>
+        </div>
+    )
+}
