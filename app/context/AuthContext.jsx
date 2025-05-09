@@ -12,13 +12,13 @@ export function AuthProvider({ children }) {
 
   
   useEffect(() => {
-    const auth = localStorage.getItem('isAuthenticated');
-    console.log('Read from localStorage:', auth);
-    if (auth === 'true') {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
       setIsAuthenticated(true);
     }
     setLoading(false);
   }, []);
+  
 
   const login = (email, password) => {
     
