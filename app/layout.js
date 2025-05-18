@@ -2,7 +2,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import { Inter } from 'next/font/google'
-import { TeacherProvider } from './context/TeacherContext'
+import { TeacherProvider } from "./context/TeacherContext";
+import { StudentProvider } from "./context/StudentContext"; 
+import { CourseProvider } from "./context/CourseContext"; 
 import { AuthProvider } from './context/AuthContext';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -17,7 +19,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <AuthProvider>
-          <TeacherProvider>{children}</TeacherProvider>
+          <TeacherProvider>
+            <StudentProvider>
+              <CourseProvider>
+            {children}
+              </CourseProvider>
+            </StudentProvider>
+          </TeacherProvider>
         </AuthProvider>
       </body>
     </html>

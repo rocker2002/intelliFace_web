@@ -3,10 +3,17 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import AdminLayout from "@/components/AdminLayout";
+import { useTeacher } from "@/app/context/TeacherContext";
+import { useCourse } from "@/app/context/CourseContext";
+import { useStudent } from "@/app/context/StudentContext";
 
 export default function DashboardPage() {
   const router = useRouter();
   const [authenticated, setAuthenticated] = useState(false);
+  const { teachers } = useTeacher();
+  const { courses } = useCourse();
+  const { students } = useStudent();
+  
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -19,10 +26,11 @@ export default function DashboardPage() {
 
   if (!authenticated) return null;
 
+  
   const summary = [
-    { label: "Total Teachers", value: 42 },
-    { label: "Students", value: 312 },
-    { label: "Courses", value: 28 },
+    { label: "Total Teachers", value: teachers?.length ?? 0 },
+    { label: "Students", value: students?.length ?? 0 },
+    { label: "Courses", value: courses?.length ?? 0 },
     { label: "Classes", value: 14 },
   ];
 
@@ -37,12 +45,12 @@ export default function DashboardPage() {
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-black mb-2">Welcome to the Dashboard!</h1>
         <p className="text-md text-gray-700">
-          Manage <span className="font-medium text-black">teachers</span>,{" "}
+          Manage <span className="font-medium text-black">teachers</span>,{""}
           <span className="font-medium text-black">students</span>, and{" "}
           <span className="font-medium text-black">attendance</span> here.
         </p>
       </div>
-
+      
       
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10">
   {summary.map((item) => (

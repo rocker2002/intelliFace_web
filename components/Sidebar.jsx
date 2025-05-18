@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 const navItems = [
   { name: 'Dashboard', href: '/admin/dashboard' },
-  { name: 'Teachers', href: '#' },
-  { name: 'Students', href: '#' },
+  { name: 'Teachers', href: '/admin/add-teacher' },
+  { name: 'Students', href: '/admin/add-student' },
   { name: 'Classes', href: '#' },
-  { name: 'Courses', href: '#' },
+  { name: 'Courses', href: '/admin/courses' },
   { name: 'Attendance', href: '#' },
   { name: 'Reports', href: '#' },
 ];
